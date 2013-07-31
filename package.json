@@ -1,0 +1,33 @@
+{
+  "name": "cooker",
+  "version": "0.0.1",
+  "description": "a minimalism style version manager",
+  "main": "index.js",
+   "scripts": {
+    "test": "./node_modules/mocha/bin/mocha ./test.js"
+  },
+  "bin": {
+    "cooker": "./bin/cli"
+  },
+  "keywords": [
+    "cooker",
+    "version",
+    "zip"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/turingou/cooker"
+  },
+  "bugs": {
+    "url": "https://github.com/turingou/cooker/issues"
+  },
+  "author": "turing",
+  "license": "MIT",
+  "dependencies": {
+    "optimist":"*"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  }
+}
