@@ -12,7 +12,7 @@ $ sudo npm install cooker -g
 
 ### Use CLI
 ````
-// watch files change and create zipfile automatic
+// watch files change and create zipfile automatically
 $ cooker or $ cooker ./demo
 
 // create cooker.configs.json
