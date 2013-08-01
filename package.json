@@ -24,7 +24,10 @@
   "author": "turing",
   "license": "MIT",
   "dependencies": {
-    "optimist":"*"
+    "optimist":"*",
+    "watch": "*",
+    "archiver": "*",
+    "colors": "*"
   },
   "devDependencies": {
     "mocha": "*",
