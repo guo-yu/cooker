@@ -1,6 +1,6 @@
 {
   "name": "cooker",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "a minimalism style version manager for static files",
   "main": "index.js",
    "scripts": {
@@ -28,7 +28,6 @@
     "watch": "*",
     "archiver": "*",
     "colors": "*",
-    "mkdirp": "*",
     "releaser": "*",
     "underscore": "*",
     "async": "*"

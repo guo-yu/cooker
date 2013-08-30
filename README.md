@@ -14,20 +14,13 @@ $ sudo npm install cooker -g
 
 ### Use CLI
 ````
-// watch files change and create zipfile automatically
-$ cooker or $ cooker ./demo
-
-// create cooker.configs.json
-$ cooker -c
-
-// fill cooker.configs.json and rewatch changes
-$ cooker
-
 // update version by youself
-$ cooker up
+$ cooker up README.md
 ````
 
 ### Sample code
+
+now building...
 
 ````javascript
 var cooker = require('cooker');

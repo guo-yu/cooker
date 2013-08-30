@@ -55,3 +55,6 @@ exports.cli = function() {
         }
     }
 };
+
+exports.watch = require('./lib/watcher').watch;
+exports.zip = require('./lib/file').zip;
