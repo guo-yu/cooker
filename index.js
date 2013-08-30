@@ -15,16 +15,15 @@ var optimist = require('optimist'),
 // CLI
 exports.cli = function() {
     var params = argv._;
-    // 手动升级版本
+    // 手动升级版本，必须指定文件
     if (params[0] == 'up') {
         if (params.length > 1) {
             var files = params.slice(1);
-            // 读取文件版本表
+            // 读取执行命令当前目录下的文件版本表
             console.log(color.yellow('[ Loading ] ') + '正在读取版本信息...');
             version.read(function(exist, versions) {
                 if (exist) {
                     console.log(color.yellow('[ Success ] ') + '版本信息读取成功...');
-                    // 如果有指定文件
                     // 升级版本
                     version.update(versions, files, function(err) {
                         if (!err) {
@@ -38,11 +37,11 @@ exports.cli = function() {
                     // 创建一个新的版本清单
                     console.log(color.yellow('[ Loading ] ') + '没有找到版本清单...');
                     version.createList(files, function(filelist) {
-                        console.log(color.green('[ Success ] ') + '版本清单创建成功，创建时间：' + timestamp);
+                        console.log(color.green('[ Success ] ') + '版本清单创建成功，创建时间：' + new Date());
                         // 保留一份老版本
                         version.backup(filelist, function(err) {
                             if (!err) {
-                                console.log(color.green('[ Success ] ') + '新版本创建成功，备份完成');
+                                console.log(color.green('[ Success ] ') + filelist[0].name + '等文件的新版本创建成功，备份完成');
                             } else {
                                 console.log(color.red('[ Error ] ') + '版本创建失败，详情如下：');
                                 console.log(err);
