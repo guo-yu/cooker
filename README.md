@@ -1,6 +1,6 @@
-# ![logo](http://ww4.sinaimg.cn/large/61ff0de3jw1e76l9veqwsj20190190sj.jpg) Cooker ![npm](https://badge.fury.io/js/cooker.png)
+# ![logo](http://ww4.sinaimg.cn/large/61ff0de3jw1e76l9veqwsj20190190sj.jpg) cooker ![npm](https://badge.fury.io/js/cooker.png)
 
-a minimalism style version manager.
+a minimalism style version manager for static files.
 
 ## How to install
 
@@ -20,6 +20,9 @@ $ cooker -c
 
 // fill cooker.configs.json and rewatch changes
 $ cooker
+
+// update version by youself
+$ cooker up
 ````
 
 ### Sample code

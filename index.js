@@ -4,55 +4,55 @@
 // / /__/ /_/ / /_/ / ,< /  __/ /    
 // \___/\____/\____/_/|_|\___/_/     
 // 
-// a minimalism style version manager
+// @brief: a minimalism style version manager for static files
+// @author: [turing](http://guoyu.me)
 
 var optimist = require('optimist'),
     argv = optimist.argv,
     color = require('colors'),
-    zipper = require('./lib/zipper'),
-    watcher = require('./lib/watcher'),
     version = require('./lib/version');
-
-// version manager
-exports.version = version;
-
-// create .zip
-exports.zip = function(dist,dir) {
-    var zip = new zipper(dist);
-    zip.create([{
-        name: 'demo.txt',
-        dir: __dirname + '/demo.txt'
-    }], function(err, stat) {
-        if (!err) {
-            console.log(stat);
-        }
-    })
-};
-
-// watch files change
-exports.watch = function(dir, cb) {
-    watcher.watch(dir, function(monitor) {
-        cb(monitor);
-    });
-}
 
 // CLI
 exports.cli = function() {
-    if (argv.w) {
-        console.log(color.yellow('[Cooker] watching...!'));
-        exports.watch(argv.w, function(monitor) {
-            monitor.on("created", function(f, stat) {
-                // Handle new files
-                console.log('new files added!!!')
-            })
-            monitor.on("changed", function(f, curr, prev) {
-                // Handle file changes
-                console.log('files changed!!!')
-            })
-            monitor.on("removed", function(f, stat) {
-                // Handle removed files
-                console.log('files removed!!!')
-            })
-        });
+    var params = argv._;
+    // 手动升级版本
+    if (params[0] == 'up') {
+        if (params.length > 1) {
+            var files = params.slice(1);
+            // 读取文件版本表
+            console.log(color.yellow('[ Loading ] ') + '正在读取版本信息...');
+            version.read(function(exist, versions) {
+                if (exist) {
+                    console.log(color.yellow('[ Success ] ') + '版本信息读取成功...');
+                    // 如果有指定文件
+                    // 升级版本
+                    version.update(versions, files, function(err) {
+                        if (!err) {
+                            console.log(color.green('[ Success ] ') + '新版本创建成功，备份完成');
+                        } else {
+                            console.log(color.red('[ Error ] ') + '版本创建失败，详情如下：');
+                            console.log(err);
+                        }
+                    });
+                } else {
+                    // 创建一个新的版本清单
+                    console.log(color.yellow('[ Loading ] ') + '没有找到版本清单...');
+                    version.createList(files, function(filelist) {
+                        console.log(color.green('[ Success ] ') + '版本清单创建成功，创建时间：' + timestamp);
+                        // 保留一份老版本
+                        version.backup(filelist, function(err) {
+                            if (!err) {
+                                console.log(color.green('[ Success ] ') + '新版本创建成功，备份完成');
+                            } else {
+                                console.log(color.red('[ Error ] ') + '版本创建失败，详情如下：');
+                                console.log(err);
+                            }
+                        });
+                    });
+                }
+            });
+        } else {
+             console.log(color.red('[ Error ] ') + '请指定需要监控版本的文件名称');
+        }
     }
 };
