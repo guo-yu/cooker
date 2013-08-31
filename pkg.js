@@ -1,7 +1,7 @@
 var fs = require('fs');
 
 exports.fetch = function(file) {
-    return JSON.parse(fs.readFileSync(file))
+    return JSON.parse(fs.readFileSync(__dirname + file));
 }
 
 exports.set = function(file, obj) {
