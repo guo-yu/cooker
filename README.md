@@ -2,6 +2,8 @@
 
 a minimalism style version manager for static files.
 
+![screenshot](http://ww3.sinaimg.cn/large/61ff0de3jw1e86g0oi2jwj20lf0ioq6h.jpg)
+
 ## How to install
 
 ````
